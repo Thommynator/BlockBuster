@@ -20,7 +20,8 @@ public class PaddleMover : MonoBehaviour
     void Update()
     {
         Vector3 limitedPosition = LimitToScreenBounds(Input.mousePosition);
-        transform.position = new Vector3(limitedPosition.x, transform.position.y, transform.position.z);
+        Vector2 targetPosition = new Vector3(limitedPosition.x, transform.position.y, transform.position.z);
+        transform.position = Vector3.Lerp(transform.position, targetPosition, 0.2f);
     }
 
     Vector2 LimitToScreenBounds(Vector2 position)

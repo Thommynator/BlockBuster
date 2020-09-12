@@ -13,8 +13,10 @@ public class BlockBehavior : MonoBehaviour
     void Start()
     {
         ballBody = GameObject.Find("Ball").GetComponent<Rigidbody>();
-        LeanTween.scale(this.gameObject, transform.localScale * 0.95f, Random.Range(0.1f, 0.5f)).setLoopPingPong();
-        LeanTween.rotateZ(this.gameObject, Random.Range(-5, 5), Random.Range(0.4f, 0.8f)).setLoopPingPong();
+
+        LeanTween.scale(this.gameObject, transform.localScale * 0.95f, Random.Range(0.1f, 0.5f)).setDelay(0.5f).setLoopPingPong();
+        LeanTween.rotateZ(this.gameObject, Random.Range(-5, 5), Random.Range(0.4f, 0.8f)).setDelay(0.5f).setLoopPingPong();
+
     }
 
     // Update is called once per frame
@@ -27,7 +29,6 @@ public class BlockBehavior : MonoBehaviour
     {
         GetComponent<BoxCollider>().enabled = false;
 
-        Debug.Log(collision.collider.tag);
         if (collision.collider.tag == "Ball")
         {
             hitSound.Play();

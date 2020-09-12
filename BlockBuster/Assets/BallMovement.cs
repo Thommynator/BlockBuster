@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 {
-    [SerializeField]
-    [Tooltip("Just for debugging, adds some velocity during OnEnable")]
     private Vector3 initialVelocity;
 
     [SerializeField]
@@ -19,20 +17,21 @@ public class BallMovement : MonoBehaviour
     private void OnEnable()
     {
         rb = GetComponent<Rigidbody>();
-        rb.velocity = initialVelocity;
-
         paddle = GameObject.Find("Paddle");
     }
 
     private void Update()
     {
+        if (Input.anyKeyDown)
+        {
+            rb.velocity = new Vector3(Random.Range(-8, 8), 1, 0).normalized * speed;
+        }
+
         lastFrameVelocity = rb.velocity;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        speed += 0.25f;
-        Debug.Log(speed);
         if (collision.gameObject.tag != "Paddle")
         {
             if (!LeanTween.isTweening(this.gameObject))
@@ -43,6 +42,7 @@ public class BallMovement : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Paddle")
         {
+            speed += 0.4f;
             HitPaddle(collision);
         }
     }

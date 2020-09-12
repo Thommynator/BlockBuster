@@ -9,9 +9,9 @@ public class BlockSpawner : MonoBehaviour
     public int cols;
     public int rows;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        LeanTween.init(800);
     }
 
     // Update is called once per frame
@@ -25,8 +25,8 @@ public class BlockSpawner : MonoBehaviour
 
     private void SpawnNewBlocks()
     {
-        Vector3 startPosition = new Vector3(-11.5f, -1, 0);
-        Vector2 spacing = new Vector2(2.5f, 1.5f);
+        Vector3 startPosition = new Vector3(-11.25f, -1, 0);
+        Vector2 spacing = new Vector2(1.6f, 0.7f);
 
         for (int r = 0; r < rows; r++)
         {
@@ -35,7 +35,9 @@ public class BlockSpawner : MonoBehaviour
                 Vector3 position = startPosition + new Vector3(spacing.x * c, spacing.y * r, 0);
                 GameObject block = GameObject.Instantiate(blockPrefab, new Vector3(position.x, 20, 0), Quaternion.identity);
                 block.transform.parent = this.transform;
-                LeanTween.move(block, position, Random.Range(0.1f, 0.8f)).setEaseOutBounce();
+                float randomTime = Random.Range(0.1f, 0.5f);
+                LeanTween.move(block, position, randomTime).setEaseOutBack();
+                LeanTween.scale(block, block.transform.localScale * 0.6f, randomTime / 2).setLoopPingPong(1);
             }
         }
     }
