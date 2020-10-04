@@ -14,6 +14,8 @@ public class BallMovement : MonoBehaviour
 
     private GameObject paddle;
 
+    private bool hasStarted = false;
+
     private void OnEnable()
     {
         rb = GetComponent<Rigidbody>();
@@ -22,9 +24,10 @@ public class BallMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.anyKeyDown)
+        if (!hasStarted && Input.anyKeyDown)
         {
-            rb.velocity = new Vector3(Random.Range(-8, 8), 1, 0).normalized * speed;
+            rb.velocity = new Vector3(Random.Range(-4, 4), 1, 0).normalized * speed;
+            hasStarted = true;
         }
 
         lastFrameVelocity = rb.velocity;
