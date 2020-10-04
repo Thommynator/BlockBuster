@@ -380,7 +380,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 1.6311e-41, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 6.94e-43, y: 9.4e-44, z: 0, w: 0.000000013622234}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -459,7 +459,7 @@ GameObject:
   - component: {fileID: 502346552}
   m_Layer: 0
   m_Name: Paddle
-  m_TagString: Untagged
+  m_TagString: Paddle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

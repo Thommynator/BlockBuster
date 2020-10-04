@@ -66,7 +66,7 @@ public class BallMovement : MonoBehaviour
     {
         Vector3 paddlePosition = paddle.transform.position;
         Vector3 hitPosition = collision.GetContact(0).point;
-        float paddleWidth = paddle.transform.localScale.x;
+        float paddleWidth = 4f;
 
         // relative paddle hit position between -1 & +1
         float normalizedHitPositionX = (paddlePosition.x - hitPosition.x) / (paddleWidth / 2);
